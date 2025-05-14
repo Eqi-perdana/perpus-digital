@@ -27,14 +27,19 @@ class HandleInertiaRequests extends Middleware
      *
      * @return array<string, mixed>
      */
+    // pada method share kita menambahkan beberapa key dalam array auth
     public function share(Request $request): array
     {
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                // yang pertama ada key permissions
                 'permissions' => $request->user() ? $request->user()->getUserPermissions() : [],
             ],
+            // pada kode diatas, key permission melakukan pengecekan apakah user sedang login
+            //  jika true maka tampilkan data permission yang dimiliki user menggunakkan method getuserpermissions
+            // jika false akan menampilkan empty array
         ];
     }
 }
