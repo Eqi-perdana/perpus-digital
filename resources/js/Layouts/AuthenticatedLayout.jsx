@@ -24,15 +24,15 @@ export default function AuthenticatedLayout({ header, children }) {
 
     return (
         // bagian navbar
-        <div className="min-h-screen bg-gray-100">
-            <nav className="border-b border-gray-100 bg-white">
+        <div className="min-h-screen bg-green-100">
+            <nav className="border-b border-green-100 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         {/* logo aplikasi dan menu navigasi */}
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <ApplicationLogo className="block h-9 w-auto fill-current text-green-800" />
                                 </Link>
                             </div>
 
@@ -42,7 +42,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                 <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
-                                    className="flex items-center space-x-2 px-4 py-2 rounded-md text-gray-700 hover:bg-purple-400 hover:text-white transition-all duration-400"
+                                    className="flex items-center space-x-2 px-4 py-2 rounded-md text-green-700 hover:bg-red-400 hover:text-white transition-all duration-400"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l9-9 9 9" />
@@ -59,7 +59,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     <NavLink
                                         href={route("permissions.index")}
                                         active={route().current("permissions*")}
-                                        className="flex items-center space-x-2 px-4 py-2 rounded-md text-gray-700 hover:bg-purple-400 hover:text-white transition-all duration-400"
+                                        className="flex items-center space-x-2 px-4 py-2 rounded-md text-green-700 hover:bg-red-400 hover:text-white transition-all duration-400"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 3l14 0m-7 4v12m-7-8h14" />
@@ -73,7 +73,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     <NavLink
                                         href={route("roles.index")}
                                         active={route().current("roles*")}
-                                        className="flex items-center space-x-2 px-4 py-2 rounded-md text-gray-700 hover:bg-purple-400 hover:text-white transition-all duration-400"
+                                        className="flex items-center space-x-2 px-4 py-2 rounded-md text-green-700 hover:bg-red-400 hover:text-white transition-all duration-400"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 11c1.5 0 2-1.5 2-2s-.5-2-2-2-2 1.5-2 2 0 2 .5 2zM5 21h14M19 3h-1V2h-2v1H8V2H6v1H5c-1 0-1 1-1 1v18c0 1 1 1 1 1h14c1 0 1-1 1-1V4c0-1-1-1-1-1z" />
@@ -86,7 +86,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                     <NavLink
                                         href={route('users.index')}
                                         active={route().current('users*')}
-                                        className="flex items-center space-x-2 px-4 py-2 rounded-md text-gray-700 hover:bg-purple-400 hover:text-white transition-all duration-400"
+                                        className="flex items-center space-x-2 px-4 py-2 rounded-md text-green-700 hover:bg-red-400 hover:text-white transition-all duration-400"
 
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -101,7 +101,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                 <NavLink
                                     href={route("categories.index")}
                                     active={route().current("categories*")}
-                                    className="flex items-center space-x-2 px-4 py-2 rounded-md text-gray-700 hover:bg-purple-400 hover:text-white transition-all duration-400"
+                                    className="flex items-center space-x-2 px-4 py-2 rounded-md text-green-700 hover:bg-red-400 hover:text-white transition-all duration-400"
                                 >
                                     {/* Ikon Buku Terbuka */}
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -123,7 +123,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-blue-500 transition duration-150 ease-in-out hover:text-blue-700 focus:outline-none"
                                             >
                                                 {user.name}
 
