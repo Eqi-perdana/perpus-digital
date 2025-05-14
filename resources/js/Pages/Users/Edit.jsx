@@ -1,23 +1,36 @@
+// Library utama untuk membuat komponen
 import React ,{useEffect, useState }from 'react'
+// untuk tampilan navigasi dan struktur halaman
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+// membungkus konten
 import Container from '@/Components/Container';
+// mengatur header, form dan halaman
 import { Head, useForm, usePage } from '@inertiajs/react';
+// beberapa komponen
 import Input from '@/Components/Input';
 import Button from '@/Components/Button';
 import Card from '@/Components/Card';
+// memberikan notifikasi jika data berhasil di buat
 import Swal from 'sweetalert2';
+// mengambil komponen select
 import Select2 from '@/Components/Select2';
 
+// edit pengguna yang ada
 export default function Edit({auth}) {
 
     // destruct roles and user from usepage props
+
     const { user, roles } = usePage().props;
 
     // define state with helper inertia
+    // untuk mengelola form
     const { data, setData, post, errors } = useForm({
+        // data user 
         name : user.name,
         email: user.email,
+        // ketika pengguna memilih peran dari dropdown
         selectedRoles : user.roles.map(role => role.name),
+        // untuk Menyimpan Data
         filterRole : user.roles.map(role => ({
             value: role.name,
             label: role.name
@@ -39,11 +52,13 @@ export default function Edit({auth}) {
     }
 
     // define method handleUpdateData
+    // pengeditan data
     const handleUpdateData = async (e) => {
         e.preventDefault();
 
         post(route('users.update', user.id), {
             onSuccess: () => {
+                // pesan jika proses berhasil
                 Swal.fire({
                     title: 'Success!',
                     text: 'Data updated successfully!',
@@ -56,6 +71,7 @@ export default function Edit({auth}) {
     }
 
     return (
+        // halaman hanya bisa di akses oleh user yang ter authtentikasi
         <AuthenticatedLayout
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit User</h2>}
@@ -87,3 +103,5 @@ export default function Edit({auth}) {
         </AuthenticatedLayout>
     )
 }
+// Kode ini adalah form untuk mengedit pengguna dalam aplikasi berbasis React dengan Inertia.js. Pengguna dapat mengedit nama, email, dan peran yang dimiliki. Data 
+// yang telah diperbarui akan dikirim ke server, dan jika berhasil, notifikasi sukses akan muncul menggunakan SweetAlert2.

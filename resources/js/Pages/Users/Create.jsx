@@ -1,18 +1,29 @@
+// library react
 import React from 'react'
+// menampilkan navigasi dan struktur halaman
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+// membungkus konten
 import Container from '@/Components/Container';
+// tampilan head, form dan halaman dengan inertia js
 import { Head, useForm, usePage } from '@inertiajs/react';
+// beberapa komponen
 import Input from '@/Components/Input';
 import Button from '@/Components/Button';
 import Card from '@/Components/Card';
 import Select2 from '@/Components/Select2';
+// memberikan notifikasi data berhasil di kirim
 import Swal from 'sweetalert2';
+
+// untuk membuat pengguna baru
 export default function Create({auth}) {
 
+
     // destruct roles from usepage props
+    // Mengakses Data roles
     const { roles } = usePage().props;
 
     // define state with helper inertia
+    // untuk mengelola state form di Inertia.js. data adalah objek yang menyimpan nilai-nilai input form.
     const { data, setData, post, errors } = useForm({
         name : '',
         email: '',
@@ -22,22 +33,31 @@ export default function Create({auth}) {
     });
 
     // define method handleSelectedroles
+    // Mengubah Format Data roles untuk Dropdown
     const formattedRoles = roles.map(role => ({
         value: role.name,
         label: role.name
+        // Data roles yang diterima dari server diformat ulang menjadi array objek yang cocok untuk digunakan di dropdown Select2.
+        //  Setiap peran (role) diubah menjadi objek dengan properti value dan label, keduanya diisi dengan nama peran.
     }));
 
 
 
+    // untuk Menangani Pilihan Peran
     const handleSelectedRoles = (selected) => {
         const selectedValues = selected.map(option => option.value);
         setData('selectedRoles', selectedValues);
+        // handleSelectedRoles: Fungsi ini dipanggil saat pengguna memilih peran di dropdown. 
+        // selected adalah array dari objek yang dipilih. Fungsi ini mengonversi array tersebut menjadi array nilai (value),
+        //  kemudian mengupdate state selectedRoles dengan nilai-nilai yang dipilih.
     }
 
     // define method handleStoreData
+    // Menyimpan Data Pengguna Baru
     const handleStoreData = async (e) => {
         e.preventDefault();
 
+        //  Mengirim data ke rute users.store di server
         post(route('users.store'), {
             onSuccess: () => {
                 Swal.fire({
@@ -52,6 +72,7 @@ export default function Create({auth}) {
     }
 
     return (
+        // Menggunakan layout yang hanya bisa diakses oleh pengguna yang sudah terautentikasi.
         <AuthenticatedLayout
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Create User</h2>}
@@ -104,7 +125,7 @@ export default function Create({auth}) {
                             <Input label={'Password Confirmation'} type={'password'} value={data.password_confirmation} onChange={e => setData('password_confirmation', e.target.value)} errors={errors.password_confirmation} placeholder="Input password confirmation..."/>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <Button type={'submit'} />
+                            <Button type={'submit'}  url={route('users.index')}/>
                             <Button type={'cancel'} url={route('users.index')}/>
                         </div>
                     </form>
@@ -113,3 +134,6 @@ export default function Create({auth}) {
         </AuthenticatedLayout>
     )
 }
+// Kode ini adalah halaman pembuatan pengguna baru dalam aplikasi berbasis React dengan Inertia.js. 
+// Pengguna dapat memasukkan nama, email, peran (role), password, dan konfirmasi password.
+//  Data form dikirim ke server dengan menggunakan post dari  useForm dan hasilnya akan memunculkan notifikasi sukses menggunakan SweetAlert2 setelah data berhasil disimpan.
