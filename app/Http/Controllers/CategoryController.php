@@ -13,7 +13,7 @@ class CategoryController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware('permission:categories menambahkan index', only: ['index']),
+            new Middleware('permission:categories index', only: ['index']),
             new Middleware('permission:categories create', only: ['create', 'store']),
             new Middleware('permission:categories edit', only: ['edit', 'update']),
             new Middleware('permission:categories delete', only: ['destroy']),
